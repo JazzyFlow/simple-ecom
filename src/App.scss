@@ -37,11 +37,17 @@
   }
 }
 
-//Navbar 
-#navbar ul {
-  padding: 0;
+//Typography
+h2 {
   margin: 0;
+}
 
-  display: flex;
-  list-style: none;
+//Navbar 
+#navbar {
+  .menu-container {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

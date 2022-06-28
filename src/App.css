@@ -35,11 +35,15 @@
     transform: rotate(360deg);
   }
 }
-#navbar ul {
-  padding: 0;
+h2 {
   margin: 0;
+}
+
+#navbar .menu-container {
+  padding: 10px;
   display: flex;
-  list-style: none;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /*# sourceMappingURL=App.css.map */
