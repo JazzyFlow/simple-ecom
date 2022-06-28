@@ -12,6 +12,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,11 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+//Navbar 
 #navbar ul {
   padding: 0;
   margin: 0;
+
   display: flex;
   list-style: none;
 }
-
-/*# sourceMappingURL=App.css.map */
