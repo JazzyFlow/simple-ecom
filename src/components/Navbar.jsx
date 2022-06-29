@@ -1,13 +1,15 @@
 import { CgMenuLeft } from 'react-icons/cg';
-import { FiShoppingCart } from 'react-icons/fi';
+import { TbShoppingCart } from 'react-icons/tb';
+import { MdAddCircleOutline } from 'react-icons/md';
 
-function Navbar() {
+function Navbar({ toggleMenu, toggleAddProduct }) {
     return (
         <div id='navbar'>
-            <div className='menu-container'>
-                <CgMenuLeft size={"2em"}/>
-                <h2>Shop</h2>
-                <FiShoppingCart size={"2em"}/>
+            <CgMenuLeft onClick={() => toggleMenu() } size="2em"/>
+            <h2><a href="/">TheShop.</a></h2>
+            <div>
+                <MdAddCircleOutline onClick={() => toggleAddProduct()} className='add-product' style={{marginRight:"10px"}} size="1.5em"/>
+                <TbShoppingCart size="1.5em"/>
             </div>
         </div>
     );

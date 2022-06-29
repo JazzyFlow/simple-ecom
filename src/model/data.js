@@ -1,58 +1,66 @@
 const data = [
     {
+        id: 1,
         product: "Apple",
-        price: ".19",
+        price: "0.19",
         category: "Fruits",
-        description: "",
+        description: "An apple a day keeps the doctors away.",
         image: ""
     },
     {
+        id: 2,
         product: "Carrot",
-        price: ".29",
+        price: "0.29",
         category: "Vegtables",
-        description: "",
+        description: "Healthy AF (also good for the eyes).",
         image: ""
     },
     {
+        id: 3,
         product: "Grapes",
         price: "3.99",
         category: "Fruits",
-        description: "",
+        description: "Best fruit ever, hands down.",
         image: ""
     },
     {
+        id: 4,
         product: "Milk",
         price: "1.99",
         category: "Dairy",
-        description: "",
+        description: "Mama needs some of them milk.",
         image: ""
     },
     {
+        id: 5,
         product: "Coke",
-        price: ".29",
+        price: "0.29",
         category: "Drinks",
-        description: "",
+        description: "Freedom From Thirst.",
         image: ""
     },
     {
+        id: 6,
         product: "Egg",
-        price: ".10",
+        price: "0.10",
         category: "Poultry",
-        description: "",
+        description: "How did the omelet find out she was ill? -She had a medical eggs-am.",
         image: ""
     },
     {
+        id: 7,
         product: "Sprite",
-        price: ".29",
+        price: "0.29",
         category: "Drinks",
-        description: "",
+        description: "Restraint From Thirst",
         image: ""
     },
     {
+        id: 8,
         product: "Cabbage",
-        price: ".10",
+        price: "0.10",
         category: "Vegtables",
-        description: "",
+        description: "Caaaaaabbaaaage!",
         image: ""
     }
 ];
