@@ -253,3 +253,40 @@ form {
     margin-left: auto;
   }
 }
+
+.cart-container {
+  background: #fff;
+  position: fixed;
+  top: 53px;
+  right: 0;
+  height: 100%;
+  overflow: hidden;
+  transition: width .5s ease-in-out;
+  width: 0;
+  margin-left: auto;
+  z-index: 1;
+  h1 {
+    font-size: 150px;
+    margin: 0 0 50px 10px;
+  }
+  table {
+    margin-left: 10px;
+    border: 1px solid;
+    width: 50%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    thead {
+      border-bottom: 1px solid;
+    }
+    tbody td {
+      border: 1px solid;
+    }
+    tfoot {
+      border-top: 1px solid;
+    }
+  }
+  &.active {
+    width: 95%;
+    border-left: 1px solid;
+  }
+}

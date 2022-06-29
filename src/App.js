@@ -17,6 +17,7 @@ function App() {
   const [addProductVisibility, setAddProductVisibility] = useState(false);
   const [editView, setEditView] = useState(false);
   const [currentCategory, setCurrentCategory] = useState("All");
+  const [cartView, setCartView] = useState(false);
   const [cart, setCart] = useState([]);
 
   function toggleProduct(id) {
@@ -27,11 +28,19 @@ function App() {
   function toggleMenu() {
     setMenuVisibility(!menuVisibility);
     setAddProductVisibility(false);
+    setCartView(false);
   }
 
   function toggleAddProduct() {
     setAddProductVisibility(!addProductVisibility);
     setMenuVisibility(false);
+    setCartView(false);
+  }
+
+  function toggleCart() {
+    setCartView(!cartView);
+    setMenuVisibility(false);
+    setAddProductVisibility(false);
   }
 
   function addProduct(e) {
@@ -46,6 +55,7 @@ function App() {
     setProducts(data);
     setCategories([...new Set(data.map(product => product.category)).values()]);
     filter(product.category);
+    setAddProductVisibility(false);
   }
 
   function editProduct(e, id) {
@@ -90,9 +100,26 @@ function App() {
     }
   }
 
+  function groupOrders() {
+    const order = {};
+    cart.forEach(product => {
+      if (!order[product.id]) order[product.id] = [];
+      order[product.id].push(product);
+    });
+    return order;
+  }
+
+  function getTotalPrice(obj) {
+    const totals = [];
+    for (const arr of Object.values(obj)) {
+      totals.push(...arr);
+    }
+    return totals.map(({price}) => parseFloat(price) ? parseFloat(price) : 0).reduce((a, b) => a + b)
+  }
+
   return (
     <div className="App">
-      <Navbar toggleAddProduct={toggleAddProduct} toggleMenu={toggleMenu}/>
+      <Navbar toggleAddProduct={toggleAddProduct} toggleMenu={toggleMenu} toggleCart={toggleCart}/>
       <div className={`menu ${ menuVisibility ? "active" : "hidden"}`}>
         <h1>MENU</h1>
         <ul>
@@ -180,16 +207,53 @@ function App() {
             </div>
           </form>
       </div>
-      <div className='cart-container'>
+      <div className={`cart-container ${cartView ? "active" : ""}`}>
           {
-            cart.map(product => {
-              return (
-                <div key={product.id}>
-                  <h1>{product.id}</h1>
-                  <h1>{product.product}</h1>
+            cart.length > 0 ?
+                <div>
+                  <div>
+                    <h1>Shopping Cart</h1>
+                  </div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <td style={{textAlign:"left"}}>Product</td>
+                        <td style={{textAlign:"left"}}>Price</td>
+                        <td style={{textAlign:"right"}}>Quantity</td>
+                        <td style={{textAlign:"right"}}>Price</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Object.keys(groupOrders()).map(id => {
+                        return (
+                          <tr key={id}>
+                              <td style={{textAlign:"left"}}>{groupOrders()[id][0].product}</td>
+                              <td style={{textAlign:"left"}}>{groupOrders()[id][0].price}</td>
+                              <td style={{textAlign:"right"}}>{groupOrders()[id].length}</td>
+                              <td style={{textAlign:"right"}}>{groupOrders()[id].map(({price}) => parseFloat(price) ? parseFloat(price) : 0).reduce((a, b) => a + b)}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td style={{textAlign:"right"}}>Total Price</td>
+                        <td style={{textAlign:"right"}}>
+                            {
+                              getTotalPrice(groupOrders()).toFixed(2)
+                            }
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
                 </div>
-              );
-            })
+             : (
+              <div style={{minWidth: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <h4 style={{whiteSpace: "nowrap"}}>Your cart is empty</h4>
+              </div>
+            )
           }
       </div>
     </div>
