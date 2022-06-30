@@ -43,6 +43,10 @@ function App() {
     setAddProductVisibility(false);
   }
 
+  function removeFromCart(id) {
+    setCart(cart.filter((product) => product.id !== id));
+  }
+
   function addProduct(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -80,6 +84,7 @@ function App() {
     setProducts(data);
     setCategories([...new Set(data.map(product => product.category)).values()]);
     filter(currentCategory);
+    removeFromCart(id);
   }
 
   function addToCart(product) {
