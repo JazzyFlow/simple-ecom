@@ -1,3 +1,3 @@
-Ecommerce React App
+simple ecommerce React App
 
 YZ Cacho
